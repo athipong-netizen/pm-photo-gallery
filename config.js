@@ -1,3 +1,2 @@
-// Deploy apps-script/Code.gs as a Google Apps Script web app and paste the /exec URL.
-// Leave empty until deployment; the gallery will show the setup message instead of mock data.
-window.PM_GALLERY_API_URL = '';
+// PM Photo Gallery — published Apps Script API (read-only Drive metadata)
+window.PM_GALLERY_API_URL = 'https://script.google.com/macros/s/AKfycbz0KRpfd_8ICh35PaI-HEZwjx76UvaZbNomWHJMjxP7ialQcyP2ziDVfm1RFP3T2KzO/exec';

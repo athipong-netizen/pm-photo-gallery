@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#163b52">
+<meta name="description" content="PM Photo Gallery — ภาพกิจกรรมโรงเรียน เลือกปี เดือน และกิจกรรม">
+<title>PM Photo Gallery | ภาพกิจกรรมโรงเรียน</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#19384b;--muted:#607487;--line:#dde8ef;--brand:#1a6374;--brand2:#0e4658;--bg:#f5f8fa;--white:#fff;--accent:#e9f4f3;--shadow:0 12px 34px rgba(17,56,74,.07)}
+*{box-sizing:border-box}body{margin:0;font-family:Kanit,system-ui,sans-serif;color:var(--ink);background:var(--bg);font-weight:400}button,a{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible{outline:3px solid #e6ad46;outline-offset:3px}
+header{background:#fff;border-bottom:1px solid var(--line)}.nav{max-width:1160px;margin:auto;min-height:78px;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{display:flex;align-items:center;gap:13px;font-weight:600;font-size:1.25rem}.logo{width:47px;height:47px;border-radius:15px;background:var(--brand2);color:white;display:grid;place-items:center;font-size:22px}.nav small{display:block;font-size:.75rem;color:var(--muted);font-weight:300}.demo-pill{background:#fff2d9;color:#8d5a00;padding:7px 12px;border-radius:99px;font-size:.76rem;white-space:nowrap}
+.hero{background:linear-gradient(112deg,#12384d 0%,#1c6474 65%,#317e83 100%);color:white}.hero-inner{max-width:1160px;margin:auto;padding:51px 24px 54px}.eyebrow{letter-spacing:2px;text-transform:uppercase;font-size:.82rem;opacity:.8;margin:0 0 11px}.hero h1{font-size:clamp(2rem,4.3vw,3.5rem);line-height:1.18;font-weight:600;margin:0 0 12px}.hero p{margin:0;font-weight:300;font-size:1rem;color:#d9e9ed;max-width:630px}.hero-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.hero-meta span{border:1px solid #ffffff45;border-radius:99px;padding:7px 15px;font-size:.86rem}
+main{max-width:1160px;margin:0 auto;padding:30px 24px 80px}.crumbs{display:flex;align-items:center;gap:9px;flex-wrap:wrap;color:var(--muted);font-size:.89rem;margin-bottom:22px}.crumbs button{border:0;background:none;color:var(--brand);padding:0}.crumbs b{color:var(--ink);font-weight:500}.section-top{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:22px}.section-top h2{font-weight:600;margin:0 0 4px;font-size:1.65rem}.section-top p{color:var(--muted);margin:0;font-size:.93rem}.count{background:#e8f1f3;border-radius:99px;padding:7px 14px;color:var(--brand2);font-size:.82rem;white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:19px}.tile{border:1px solid var(--line);background:white;box-shadow:var(--shadow);border-radius:18px;overflow:hidden;text-align:left;transition:transform .2s,box-shadow .2s;min-width:0}.tile:hover{transform:translateY(-3px);box-shadow:0 18px 38px rgba(17,56,74,.13)}.tile button{border:0;background:none;text-align:left;width:100%;padding:0;color:inherit}.cover{height:195px;background:#dbe9ec;position:relative;overflow:hidden}.cover img{width:100%;height:100%;object-fit:cover;display:block}.cover img:not([src]){display:none}.cover:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(16,49,61,.28),transparent 65%);pointer-events:none}.year-cover{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#2f7880,#133d54);color:white}.year-cover span{font-size:4.2rem;font-weight:600;letter-spacing:1px}.month-cover{background:linear-gradient(135deg,#b4d6d4,#478d98)}.month-cover span{font-size:2.4rem;font-weight:500;color:#123d4f}.tile-info{padding:17px 18px 19px}.tile-info h3{margin:0 0 4px;font-weight:500;font-size:1.12rem}.tile-info p{margin:0;color:var(--muted);font-size:.82rem}.tile-info .arrow{display:flex;justify-content:space-between;align-items:center}.chev{color:var(--brand);font-size:1.4rem}
+.gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.photo{border:0;border-radius:15px;overflow:hidden;position:relative;background:#e2ecf1;aspect-ratio:4/3;padding:0}.photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s}.photo:hover img{transform:scale(1.045)}.photo span{position:absolute;bottom:10px;right:11px;background:#102f40c9;color:#fff;border-radius:8px;padding:5px 9px;font-size:.77rem}
+.back-btn{display:inline-flex;align-items:center;gap:7px;color:var(--brand);background:white;border:1px solid var(--line);padding:8px 14px;border-radius:11px;margin-bottom:15px}.empty{border:1px dashed #b2cbd1;border-radius:18px;background:white;padding:40px 20px;text-align:center;color:var(--muted)}
+footer{border-top:1px solid var(--line);background:white;padding:21px 24px;text-align:center;color:var(--muted);font-size:.78rem}footer strong{color:var(--ink);font-weight:500}
+.modal{position:fixed;inset:0;background:rgba(6,22,32,.93);z-index:10;display:none;flex-direction:column;color:white}.modal.open{display:flex}.modal-bar{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;gap:12px}.modal-actions{display:flex;gap:8px;flex-wrap:wrap}.modal button,.modal a{background:#ffffff20;border:1px solid #ffffff44;border-radius:9px;color:white;padding:9px 14px}.modal-figure{min-height:0;flex:1;display:flex;align-items:center;justify-content:center;gap:15px;padding:8px 15px 25px}.modal-figure img{max-height:100%;max-width:min(82vw,1100px);object-fit:contain;border-radius:5px}.modal figcaption{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);font-size:.78rem;color:#ccdbe4;white-space:nowrap}.viewer-nav{font-size:1.4rem!important;min-width:44px}
+@media(max-width:850px){.grid,.gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-inner{padding:40px 22px}.cover{height:175px}}@media(max-width:550px){.nav{min-height:68px;padding:12px 16px}.brand{font-size:1.04rem}.logo{height:40px;width:40px}.hero-inner{padding:33px 18px}.hero-meta{margin-top:18px}.grid,.gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}main{padding:24px 14px 56px}.cover{height:128px}.year-cover span{font-size:2.9rem}.month-cover span{font-size:1.75rem}.tile-info{padding:12px}.tile-info h3{font-size:.94rem}.tile-info p{font-size:.72rem}.section-top h2{font-size:1.3rem}.section-top{align-items:center}.modal-bar{align-items:start}.modal-figure{gap:4px;padding:5px}.modal-figure img{max-width:75vw}.viewer-nav{min-width:34px;padding:6px!important}}
+</style>
+</head>
+<body>
+<header><div class="nav"><a class="brand" href="#/" aria-label="หน้าแรก PM Photo Gallery"><span class="logo" aria-hidden="true">▣</span><span>PM Photo Gallery<small>คลังภาพกิจกรรมโรงเรียน</small></span></a><span class="demo-pill">DEMO · Version 0.1</span></div></header>
+<section class="hero"><div class="hero-inner"><p class="eyebrow">School Activity Photo Archive</p><h1>บันทึกทุกช่วงเวลา<br>ผ่านภาพกิจกรรม</h1><p>เลือกปี เดือน และกิจกรรม เพื่อชมภาพความประทับใจและดาวน์โหลดภาพถ่าย</p><div class="hero-meta"><span>ค้นหาตามปีและเดือน</span><span>ชมภาพเต็มหน้าจอ</span><span>รองรับโทรศัพท์มือถือ</span></div></div></section>
+<main><nav id="crumbs" class="crumbs" aria-label="เส้นทางนำทาง"></nav><div id="view" aria-live="polite"></div></main>
+<footer><strong>PM Photo Gallery</strong> · Prototype 0.1 · ภาพและกิจกรรมทั้งหมดในรุ่นนี้เป็นข้อมูลตัวอย่าง ไม่ใช่ภาพจริงของโรงเรียน</footer>
+<div class="modal" id="viewer" role="dialog" aria-modal="true" aria-label="ดูภาพขนาดใหญ่" aria-hidden="true"><div class="modal-bar"><span id="pictureInfo"></span><div class="modal-actions"><a id="download" href="#" target="_blank" rel="noopener noreferrer" download aria-label="ดาวน์โหลดหรือเปิดภาพต้นฉบับ">ดาวน์โหลดภาพ ↗</a><button id="closeViewer" type="button" aria-label="ปิดหน้าต่างภาพ">✕ ปิด</button></div></div><figure class="modal-figure"><button class="viewer-nav" id="prev" aria-label="ภาพก่อนหน้า">‹</button><img id="largeImage" alt=""><button class="viewer-nav" id="next" aria-label="ภาพถัดไป">›</button><figcaption>ภาพตัวอย่างจาก Unsplash · สำหรับสาธิตเท่านั้น</figcaption></figure></div>
+<script>
+'use strict';
+// DEMO ONLY. Replace DATA with approved public metadata from Google Drive in a later phase.
+// No Drive API key, token, private file ID, or personal information should be embedded here.
+const PHOTO_IDS=['photo-1523050854058-8df90110c9f1','photo-1541339907198-e08756dedf3f','photo-1509062522246-3755977927d7','photo-1523580494863-6f3031224c94','photo-1516321318423-f06f85e504b3','photo-1497633762265-9d179a990aa6','photo-1517245386807-bb43f82c33c4','photo-1552664730-d307ca884978','photo-1517457373958-b7bdd4587205'];
+function imageUrl(i,width){return 'https://images.unsplash.com/'+PHOTO_IDS[i%PHOTO_IDS.length]+'?auto=format&fit=crop&w='+width+'&q=82'}
+const yr=new Date().getFullYear()+543;
+const DATA=[
+ {year:yr,months:[
+  {month:10,events:[{id:'y0-m10-a',title:'กิจกรรมต้อนรับเปิดภาคเรียน',date:'3 พฤศจิกายน '+yr,cover:2,photos:[2,3,4,0,5,6]},{id:'y0-m10-b',title:'นิทรรศการวิทยาศาสตร์และเทคโนโลยี',date:'12 พฤศจิกายน '+yr,cover:4,photos:[4,8,3,5]}]},
+  {month:9,events:[{id:'y0-m9-a',title:'กิจกรรมพัฒนาทักษะนักเรียน',date:'18 ตุลาคม '+yr,cover:3,photos:[3,1,7,8,2]}]},
+  {month:7,events:[{id:'y0-m7-a',title:'วันสำคัญและกิจกรรมโรงเรียน',date:'7 สิงหาคม '+yr,cover:8,photos:[8,6,0,7]}]}
+ ]},
+ {year:yr-1,months:[
+  {month:11,events:[{id:'y1-m11-a',title:'กิจกรรมส่งเสริมการอ่าน',date:'15 ธันวาคม '+(yr-1),cover:5,photos:[5,1,0,2]}]},
+  {month:5,events:[{id:'y1-m5-a',title:'อบรมเชิงปฏิบัติการ',date:'20 มิถุนายน '+(yr-1),cover:7,photos:[7,4,3,6,8]}]}
+ ]}
+];
+const MONTHS=['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
+const view=document.getElementById('view'),crumbs=document.getElementById('crumbs'),viewer=document.getElementById('viewer');
+let activePhotos=[],activeIndex=0,lastFocus=null;
+function button(title,subtitle,cover,route,kind){
+ const card=document.createElement('article');card.className='tile';const btn=document.createElement('button');btn.type='button';btn.addEventListener('click',()=>{location.hash=route});
+ const art=document.createElement('div');art.className='cover'+(kind?' '+kind+'-cover':'');
+ if(kind){const t=document.createElement('span');t.textContent=title;art.append(t)}
+ else{const img=document.createElement('img');img.src=imageUrl(cover,800);img.alt='ภาพประกอบตัวอย่าง';img.loading='lazy';art.append(img)}
+ const info=document.createElement('div');info.className='tile-info';const row=document.createElement('div');row.className='arrow';const group=document.createElement('div');const h=document.createElement('h3');h.textContent=kind==='year'?'ปี '+title:title;const p=document.createElement('p');p.textContent=subtitle;group.append(h,p);const arrow=document.createElement('span');arrow.className='chev';arrow.textContent='›';row.append(group,arrow);info.append(row);btn.append(art,info);card.append(btn);return card;
+}
+function section(title,desc,count){const top=document.createElement('div');top.className='section-top';const box=document.createElement('div');const h=document.createElement('h2');h.textContent=title;const p=document.createElement('p');p.textContent=desc;box.append(h,p);const tag=document.createElement('span');tag.className='count';tag.textContent=count;top.append(box,tag);view.append(top)}
+function grid(){const el=document.createElement('div');el.className='grid';view.append(el);return el}
+function nav(items){crumbs.replaceChildren();items.forEach((item,i)=>{if(i){const sep=document.createElement('span');sep.textContent=' / ';crumbs.append(sep)}if(item.href){const b=document.createElement('button');b.textContent=item.text;b.addEventListener('click',()=>location.hash=item.href);crumbs.append(b)}else{const b=document.createElement('b');b.textContent=item.text;crumbs.append(b)}})}
+function empty(){const p=document.createElement('div');p.className='empty';p.textContent='ยังไม่มีข้อมูลกิจกรรมตัวอย่างในหมวดนี้';view.append(p)}
+function render(){
+ const route=decodeURIComponent((location.hash||'#/').slice(2)).split('/').filter(Boolean);view.replaceChildren();window.scrollTo({top:0,behavior:'instant'});
+ const home={text:'หน้าแรก',href:'#/'};const y=DATA.find(a=>String(a.year)===route[0]);const m=y&&y.months.find(a=>String(a.month)===route[1]);const e=m&&m.events.find(a=>a.id===route[2]);
+ if(route.length===0){nav([{text:'เลือกปี'}]);section('เลือกปีที่ต้องการชม','แสดงปีปัจจุบันและย้อนหลัง 1 ปี',DATA.length+' ปี');const g=grid();DATA.forEach(a=>g.append(button(String(a.year),a.months.reduce((n,m)=>n+m.events.length,0)+' กิจกรรม',0,'#/'+a.year,'year')));return}
+ if(!y){location.hash='#/';return}
+ if(route.length===1){nav([home,{text:'ปี '+y.year}]);section('กิจกรรมปี '+y.year,'เลือกเดือนที่ต้องการชม',y.months.length+' เดือน');const g=grid();y.months.forEach(a=>g.append(button(MONTHS[a.month],a.events.length+' กิจกรรม',0,'#/'+y.year+'/'+a.month,'month')));return}
+ if(!m){location.hash='#/'+y.year;return}
+ if(route.length===2){nav([home,{text:'ปี '+y.year,href:'#/'+y.year},{text:MONTHS[m.month]}]);section('กิจกรรมเดือน'+MONTHS[m.month],'เลือกกิจกรรมเพื่อดูภาพถ่าย',m.events.length+' กิจกรรม');if(!m.events.length)return empty();const g=grid();m.events.forEach(a=>g.append(button(a.title,a.date+' · '+a.photos.length+' ภาพ',a.cover,'#/'+y.year+'/'+m.month+'/'+a.id)));return}
+ if(!e){location.hash='#/'+y.year+'/'+m.month;return}
+ nav([home,{text:'ปี '+y.year,href:'#/'+y.year},{text:MONTHS[m.month],href:'#/'+y.year+'/'+m.month},{text:e.title}]);section(e.title,e.date+' · ภาพประกอบเพื่อสาธิตระบบ',e.photos.length+' ภาพ');
+ const back=document.createElement('button');back.className='back-btn';back.textContent='← กลับไปยังกิจกรรม';back.onclick=()=>location.hash='#/'+y.year+'/'+m.month;view.append(back);
+ const gallery=document.createElement('div');gallery.className='gallery';e.photos.forEach((id,i)=>{const btn=document.createElement('button');btn.className='photo';btn.type='button';btn.setAttribute('aria-label','เปิดภาพที่ '+(i+1));const img=document.createElement('img');img.src=imageUrl(id,700);img.alt='ภาพประกอบตัวอย่างที่ '+(i+1);img.loading='lazy';const lab=document.createElement('span');lab.textContent=(i+1)+' / '+e.photos.length;btn.append(img,lab);btn.addEventListener('click',()=>openViewer(e.photos,i));gallery.append(btn)});view.append(gallery);
+}
+function openViewer(photos,index){lastFocus=document.activeElement;activePhotos=photos;activeIndex=index;showPhoto();viewer.classList.add('open');viewer.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';document.getElementById('closeViewer').focus()}
+function showPhoto(){const id=activePhotos[activeIndex],url=imageUrl(id,2400);document.getElementById('largeImage').src=url;document.getElementById('largeImage').alt='ภาพตัวอย่างที่ '+(activeIndex+1);document.getElementById('pictureInfo').textContent='ภาพที่ '+(activeIndex+1)+' จาก '+activePhotos.length;const link=document.getElementById('download');link.href=url;link.setAttribute('download','pm-gallery-demo-'+(activeIndex+1)+'.jpg');link.title='ภาพสาธิตจากแหล่งภายนอก: เบราว์เซอร์อาจเปิดภาพในแท็บใหม่แทนการดาวน์โหลด'}
+function step(n){activeIndex=(activeIndex+n+activePhotos.length)%activePhotos.length;showPhoto()}
+function closeViewer(){viewer.classList.remove('open');viewer.setAttribute('aria-hidden','true');document.body.style.overflow='';document.getElementById('largeImage').removeAttribute('src');if(lastFocus)lastFocus.focus()}
+document.getElementById('closeViewer').onclick=closeViewer;document.getElementById('prev').onclick=()=>step(-1);document.getElementById('next').onclick=()=>step(1);
+viewer.addEventListener('click',e=>{if(e.target===viewer)closeViewer()});document.addEventListener('keydown',e=>{if(!viewer.classList.contains('open'))return;if(e.key==='Escape')closeViewer();if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1);if(e.key==='Tab'){const focusables=[...viewer.querySelectorAll('button,a')];const first=focusables[0],last=focusables[focusables.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
+window.addEventListener('hashchange',render);render();
+</script>
+</body>
+</html>

@@ -22,13 +22,14 @@ footer{border-top:1px solid var(--line);background:white;padding:21px 24px;text-
 .modal{position:fixed;inset:0;background:rgba(6,22,32,.93);z-index:10;display:none;flex-direction:column;color:white}.modal.open{display:flex}.modal-bar{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;gap:12px}.modal-actions{display:flex;gap:8px;flex-wrap:wrap}.modal button,.modal a{background:#ffffff20;border:1px solid #ffffff44;border-radius:9px;color:white;padding:9px 14px}.modal-figure{min-height:0;flex:1;display:flex;align-items:center;justify-content:center;gap:15px;padding:8px 15px 25px}.modal-figure img{max-height:100%;max-width:min(82vw,1100px);object-fit:contain;border-radius:5px}.modal figcaption{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);font-size:.78rem;color:#ccdbe4;white-space:nowrap}.viewer-nav{font-size:1.4rem!important;min-width:44px}
 @media(max-width:850px){.grid,.gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-inner{padding:40px 22px}.cover{height:175px}}@media(max-width:550px){.nav{min-height:68px;padding:12px 16px}.brand{font-size:1.04rem}.logo{height:40px;width:40px}.hero-inner{padding:33px 18px}.hero-meta{margin-top:18px}.grid,.gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}main{padding:24px 14px 56px}.cover{height:128px}.year-cover span{font-size:2.9rem}.month-cover span{font-size:1.75rem}.tile-info{padding:12px}.tile-info h3{font-size:.94rem}.tile-info p{font-size:.72rem}.section-top h2{font-size:1.3rem}.section-top{align-items:center}.modal-bar{align-items:start}.modal-figure{gap:4px;padding:5px}.modal-figure img{max-width:75vw}.viewer-nav{min-width:34px;padding:6px!important}}
 </style>
+<script src="config.js"></script>
 </head>
 <body>
-<header><div class="nav"><a class="brand" href="#/" aria-label="หน้าแรก PM Photo Gallery"><span class="logo" aria-hidden="true">▣</span><span>PM Photo Gallery<small>คลังภาพกิจกรรมโรงเรียน</small></span></a><span class="demo-pill">DEMO · Version 0.1</span></div></header>
+<header><div class="nav"><a class="brand" href="#/" aria-label="หน้าแรก PM Photo Gallery"><span class="logo" aria-hidden="true">▣</span><span>PM Photo Gallery<small>คลังภาพกิจกรรมโรงเรียน</small></span></a><span class="demo-pill">Google Drive · Version 0.2</span></div></header>
 <section class="hero"><div class="hero-inner"><p class="eyebrow">School Activity Photo Archive</p><h1>บันทึกทุกช่วงเวลา<br>ผ่านภาพกิจกรรม</h1><p>เลือกปี เดือน และกิจกรรม เพื่อชมภาพความประทับใจและดาวน์โหลดภาพถ่าย</p><div class="hero-meta"><span>ค้นหาตามปีและเดือน</span><span>ชมภาพเต็มหน้าจอ</span><span>รองรับโทรศัพท์มือถือ</span></div></div></section>
 <main><nav id="crumbs" class="crumbs" aria-label="เส้นทางนำทาง"></nav><div id="view" aria-live="polite"></div></main>
-<footer><strong>PM Photo Gallery</strong> · Prototype 0.1 · ภาพและกิจกรรมทั้งหมดในรุ่นนี้เป็นข้อมูลตัวอย่าง ไม่ใช่ภาพจริงของโรงเรียน</footer>
-<div class="modal" id="viewer" role="dialog" aria-modal="true" aria-label="ดูภาพขนาดใหญ่" aria-hidden="true"><div class="modal-bar"><span id="pictureInfo"></span><div class="modal-actions"><a id="download" href="#" target="_blank" rel="noopener noreferrer" download aria-label="ดาวน์โหลดหรือเปิดภาพต้นฉบับ">ดาวน์โหลดภาพ ↗</a><button id="closeViewer" type="button" aria-label="ปิดหน้าต่างภาพ">✕ ปิด</button></div></div><figure class="modal-figure"><button class="viewer-nav" id="prev" aria-label="ภาพก่อนหน้า">‹</button><img id="largeImage" alt=""><button class="viewer-nav" id="next" aria-label="ภาพถัดไป">›</button><figcaption>ภาพตัวอย่างจาก Unsplash · สำหรับสาธิตเท่านั้น</figcaption></figure></div>
+<footer><strong>PM Photo Gallery</strong> · Version 0.2 · อ่านข้อมูลจาก Google Drive แบบเรียลไทม์ โดยไม่แก้ไขไฟล์ต้นฉบับ</footer>
+<div class="modal" id="viewer" role="dialog" aria-modal="true" aria-label="ดูภาพขนาดใหญ่" aria-hidden="true"><div class="modal-bar"><span id="pictureInfo"></span><div class="modal-actions"><a id="download" href="#" target="_blank" rel="noopener noreferrer" download aria-label="ดาวน์โหลดหรือเปิดภาพต้นฉบับ">ดาวน์โหลดภาพ ↗</a><button id="closeViewer" type="button" aria-label="ปิดหน้าต่างภาพ">✕ ปิด</button></div></div><figure class="modal-figure"><button class="viewer-nav" id="prev" aria-label="ภาพก่อนหน้า">‹</button><img id="largeImage" alt=""><button class="viewer-nav" id="next" aria-label="ภาพถัดไป">›</button><figcaption>ภาพต้นฉบับอยู่บน Google Drive</figcaption></figure></div>
 <script>
 'use strict';
 // DEMO ONLY. Replace DATA with approved public metadata from Google Drive in a later phase.
@@ -61,7 +62,7 @@ function section(title,desc,count){const top=document.createElement('div');top.c
 function grid(){const el=document.createElement('div');el.className='grid';view.append(el);return el}
 function nav(items){crumbs.replaceChildren();items.forEach((item,i)=>{if(i){const sep=document.createElement('span');sep.textContent=' / ';crumbs.append(sep)}if(item.href){const b=document.createElement('button');b.textContent=item.text;b.addEventListener('click',()=>location.hash=item.href);crumbs.append(b)}else{const b=document.createElement('b');b.textContent=item.text;crumbs.append(b)}})}
 function empty(){const p=document.createElement('div');p.className='empty';p.textContent='ยังไม่มีข้อมูลกิจกรรมตัวอย่างในหมวดนี้';view.append(p)}
-function render(){
+function renderDemo(){
  const route=decodeURIComponent((location.hash||'#/').slice(2)).split('/').filter(Boolean);view.replaceChildren();window.scrollTo({top:0,behavior:'instant'});
  const home={text:'หน้าแรก',href:'#/'};const y=DATA.find(a=>String(a.year)===route[0]);const m=y&&y.months.find(a=>String(a.month)===route[1]);const e=m&&m.events.find(a=>a.id===route[2]);
  if(route.length===0){nav([{text:'เลือกปี'}]);section('เลือกปีที่ต้องการชม','แสดงปีปัจจุบันและย้อนหลัง 1 ปี',DATA.length+' ปี');const g=grid();DATA.forEach(a=>g.append(button(String(a.year),a.months.reduce((n,m)=>n+m.events.length,0)+' กิจกรรม',0,'#/'+a.year,'year')));return}
@@ -80,7 +81,81 @@ function step(n){activeIndex=(activeIndex+n+activePhotos.length)%activePhotos.le
 function closeViewer(){viewer.classList.remove('open');viewer.setAttribute('aria-hidden','true');document.body.style.overflow='';document.getElementById('largeImage').removeAttribute('src');if(lastFocus)lastFocus.focus()}
 document.getElementById('closeViewer').onclick=closeViewer;document.getElementById('prev').onclick=()=>step(-1);document.getElementById('next').onclick=()=>step(1);
 viewer.addEventListener('click',e=>{if(e.target===viewer)closeViewer()});document.addEventListener('keydown',e=>{if(!viewer.classList.contains('open'))return;if(e.key==='Escape')closeViewer();if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1);if(e.key==='Tab'){const focusables=[...viewer.querySelectorAll('button,a')];const first=focusables[0],last=focusables[focusables.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
+
+/* Live Google Drive integration. Requires deployment URL in config.js. */
+let livePhotos=[],renderId=0,liveViewer=false;
+function statusMessage(message){view.replaceChildren();const div=document.createElement('div');div.className='empty';div.textContent=message;view.append(div)}
+function textNode(tag,value){const x=document.createElement(tag);x.textContent=value;return x}
+function cardLive(title,subtitle,url,type){
+ const card=document.createElement('article');card.className='tile';const button=document.createElement('button');button.type='button';
+ const cover=document.createElement('div');cover.className='cover '+(type==='year'?'year-cover':'month-cover');
+ const symbol=textNode('span',type==='year'?String(title):type==='month'?String(title).slice(0,3):'▣');
+ if(type==='event'){symbol.style.fontSize='2.5rem'}cover.append(symbol);
+ const info=document.createElement('div');info.className='tile-info';const head=textNode('h3',type==='year'?'ปี '+title:title);const note=textNode('p',subtitle);info.append(head,note);button.append(cover,info);button.addEventListener('click',()=>{location.hash=url});card.append(button);return card;
+}
+let apiPending=null;
+function requestApi(params){
+ const base=String(window.PM_GALLERY_API_URL||'').trim();
+ if(!/^https:\/\/script\.google\.com\/macros\/s\/[a-zA-Z0-9_-]+\/exec(?:\?.*)?$/.test(base))return Promise.reject(new Error('ยังไม่ได้ตั้งค่า Google Apps Script URL ใน config.js'));
+ if(apiPending)return apiPending.then(()=>requestApi(params),()=>requestApi(params));
+ apiPending=new Promise((resolve,reject)=>{
+  let finished=false;const script=document.createElement('script');
+  const finish=(error,data)=>{if(finished)return;finished=true;clearTimeout(timer);script.remove();delete window.pmGalleryCallback;apiPending=null;if(error)reject(error);else resolve(data)};
+  window.pmGalleryCallback=result=>{if(result&&result.ok)finish(null,result.data);else finish(new Error((result&&result.error)||'ไม่สามารถอ่านข้อมูลได้'))};
+  const url=new URL(base);Object.entries(params).forEach(([k,v])=>url.searchParams.set(k,String(v)));url.searchParams.set('callback','pmGalleryCallback');
+  script.src=url.toString();script.onerror=()=>finish(new Error('เชื่อมต่อ Google Apps Script ไม่สำเร็จ'));
+  const timer=setTimeout(()=>finish(new Error('การเชื่อมต่อใช้เวลานานเกินไป กรุณาลองใหม่')),25000);
+  document.head.append(script);
+ });
+ return apiPending;
+}
+function driveImg(id,size){return 'https://drive.google.com/thumbnail?id='+encodeURIComponent(id)+'&sz=w'+size}
+function driveLink(id){return 'https://drive.google.com/file/d/'+encodeURIComponent(id)+'/view'}
+function driveDownload(id){return 'https://drive.google.com/uc?export=download&id='+encodeURIComponent(id)}
+function getParts(){return decodeURIComponent((location.hash||'#/').slice(2)).split('/').filter(Boolean)}
+function showYears(items){
+ nav([{text:'เลือกปี'}]);section('เลือกปีที่ต้องการชม','อ่านรายการปีจาก Google Drive',items.length+' ปี');
+ const g=grid();items.forEach(y=>g.append(cardLive(y.year,y.available?'เปิดดูเดือนในปีนี้':'ไม่พบโฟลเดอร์ปีนี้','#/'+y.year,'year')));
+}
+function liveMonth(items,year){nav([{text:'หน้าแรก',href:'#/'},{text:'ปี '+year}]);section('เดือนในปี '+year,'เลือกเดือนที่ต้องการชม',items.length+' เดือน');
+ if(!items.length)return empty();const g=grid();items.forEach(m=>g.append(cardLive(MONTHS[m.month],'ดูรายการกิจกรรม','#/'+year+'/'+m.month,'month')));
+}
+function liveEvents(items,year,month){nav([{text:'หน้าแรก',href:'#/'},{text:'ปี '+year,href:'#/'+year},{text:MONTHS[month]}]);section('กิจกรรมเดือน'+MONTHS[month],'ข้อมูลกิจกรรมจาก Google Drive',items.length+' กิจกรรม');
+ if(!items.length)return empty();const g=grid();items.forEach(e=>g.append(cardLive(e.title,e.date||'เปิดดูภาพถ่าย','#/'+year+'/'+month+'/'+e.id,'event')));
+}
+function liveGallery(result,year,month,eventId){
+ const photos=result.photos||[];nav([{text:'หน้าแรก',href:'#/'},{text:'ปี '+year,href:'#/'+year},{text:MONTHS[month],href:'#/'+year+'/'+month},{text:'ภาพกิจกรรม'}]);section('ภาพกิจกรรม','ภาพถ่ายจาก Google Drive รวมทุกโฟลเดอร์ย่อย',photos.length+' ภาพ');
+ const back=document.createElement('button');back.className='back-btn';back.textContent='← กลับไปยังกิจกรรม';back.onclick=()=>location.hash='#/'+year+'/'+month;view.append(back);
+ if(result.limited){const notice=textNode('p','จำนวนภาพเกินขีดจำกัดสำหรับรุ่นทดลอง แสดงสูงสุด 2,500 ภาพ');notice.style.color='var(--muted)';view.append(notice)}
+ if(!photos.length)return empty();const gallery=document.createElement('div');gallery.className='gallery';
+ photos.forEach((p,i)=>{const b=document.createElement('button');b.type='button';b.className='photo';b.setAttribute('aria-label','เปิดภาพที่ '+(i+1));const img=document.createElement('img');img.src=driveImg(p.id,800);img.loading='lazy';img.alt='ภาพที่ '+(i+1);img.onerror=()=>{img.onerror=null;img.style.display='none';b.append(textNode('span','เปิดภาพบน Google Drive'))};
+ b.append(img);b.addEventListener('click',()=>openLiveViewer(photos,i));gallery.append(b)});view.append(gallery);
+}
+function openLiveViewer(photos,i){liveViewer=true;lastFocus=document.activeElement;livePhotos=photos;activeIndex=i;showLivePhoto();viewer.classList.add('open');viewer.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';document.getElementById('closeViewer').focus()}
+function showLivePhoto(){const p=livePhotos[activeIndex];const img=document.getElementById('largeImage');img.src=driveImg(p.id,2000);img.alt='ภาพที่ '+(activeIndex+1);document.getElementById('pictureInfo').textContent='ภาพที่ '+(activeIndex+1)+' จาก '+livePhotos.length;
+ const link=document.getElementById('download');link.href=driveDownload(p.id);link.removeAttribute('download');link.textContent='ดาวน์โหลดต้นฉบับ ↗';link.title='ดาวน์โหลดจาก Google Drive โดยตรง (ขึ้นอยู่กับสิทธิ์ของไฟล์)'}
+const oldStep=step;step=function(n){if(!liveViewer)return oldStep(n);activeIndex=(activeIndex+n+livePhotos.length)%livePhotos.length;showLivePhoto()};
+const oldClose=closeViewer;closeViewer=function(){liveViewer=false;oldClose()};
+document.getElementById('closeViewer').onclick=closeViewer;
+async function render(){
+ const token=++renderId;const route=getParts();view.replaceChildren();window.scrollTo({top:0,behavior:'instant'});nav([{text:'PM Photo Gallery'}]);
+ const endpoint=String(window.PM_GALLERY_API_URL||'').trim();
+ if(!endpoint){statusMessage('ยังไม่ได้เชื่อมต่อ Google Drive: กรุณานำ URL ของ Google Apps Script Web App ไปใส่ในไฟล์ config.js ตามคู่มือ apps-script/SETUP.md');return}
+ statusMessage('กำลังอ่านข้อมูลจาก Google Drive…');
+ try{
+  let data;
+  if(route.length===0){data=await requestApi({level:'years'});if(token===renderId)showYears(data);return}
+  const year=Number(route[0]),current=new Date().getFullYear()+543;
+  if(![current,current-1].includes(year)){location.hash='#/';return}
+  if(route.length===1){data=await requestApi({level:'months',year});if(token===renderId)liveMonth(data,year);return}
+  const month=Number(route[1]);if(!Number.isInteger(month)||month<0||month>11){location.hash='#/'+year;return}
+  if(route.length===2){data=await requestApi({level:'events',year,month});if(token===renderId)liveEvents(data,year,month);return}
+  if(route.length===3){data=await requestApi({level:'photos',year,month,eventId:route[2]});if(token===renderId)liveGallery(data,year,month,route[2]);return}
+  location.hash='#/';
+ }catch(err){if(token===renderId)statusMessage('ไม่สามารถโหลดข้อมูล: '+err.message)}
+}
 window.addEventListener('hashchange',render);render();
+
 </script>
 </body>
 </html>

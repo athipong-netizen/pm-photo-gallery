@@ -55,7 +55,13 @@ function parseMonth(name,year){const m=String(name).match(/^\s*(25\d{2})-(\d{1,2
 function validYear(value){const y=Number(value),now=Number(Utilities.formatDate(new Date(),'Asia/Bangkok','yyyy'))+543;if(![now,now-1].includes(y))throw new Error('Year not allowed');return y}
 function validMonth(value){const m=Number(value);if(!Number.isInteger(m)||m<0||m>11)throw new Error('Invalid month');return m}
 function yearFolder(year){const root=DriveApp.getFolderById(ROOT_ID);return childFolders(root).find(f=>parseYear(f.getName())===year)||null}
-function monthFolder(year,month){const y=yearFolder(year);return y?childFolders(y).find(f=>parseMonth(f.getName(),year)===month)||null}
+function monthFolder(year, month) {
+  const yearDir = yearFolder(year);
+  if (!yearDir) return null;
+  return childFolders(yearDir).find(
+    folder => parseMonth(folder.getName(), year) === month
+  ) || null;
+}
 function cleanTitle(name){return String(name).replace(/^\s*25\d{2}[-_/]\d{1,2}[-_/]\d{1,2}\s*/,'').trim()||String(name)}
 function displayDate(name){const m=String(name).match(/^\s*(25\d{2})-(\d\d?)-(\d\d?)/);return m?m[3]+'/'+m[2]+'/'+m[1]:''}
 function scanPhotos(folder,out,seen,depth){
